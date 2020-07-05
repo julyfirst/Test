@@ -2,139 +2,55 @@
 
 > SpringFramework MVC 기반 프로젝트
 
-> [master branch](https://github.com/mukeunzi/How-About-Here) - spring 프레임워크, java, ajax, jsp, bootstarp, Oracle/Mybatis 를 이용해 구현한 WebFlix(영화구매사이트)!
+> [master branch](https://github.com/julyfirst/webflix) - spring 프레임워크, java, ajax, jsp, bootstarp, Oracle/Mybatis 를 이용해 구현한 WebFlix(영화구매사이트)!
 
 ## :memo: Description
 
-Web_Flix는 **영화를 구매 다운로드 할 수 있는 사이트**입니다.
+Web_Flix는 **웹(Web)과 영화(flicks)를 합성어로 웹 페이지에서 영화를 구매하여 볼 수 있는 사이트** 입니다.
 
 :one: 코로나19로 인해 집에있는 사람들을 위한 
-:two: 여러가지 영화를 다운 받을 수 있게 만들었습니다.
 
-을 위해 만들어졌으며, 만족했던 데이트 장소를 공유함으로서 데이트 장소에 대한 후기와 다양한 정보를 얻을 수 있는 서비스입니다.
-과도한 해시태그 남발을 방지하기 위해 관리자만이 해시태그를 등록할 수 있도록 했고, 지도 API를 이용하여 장소를 게시물의 제목으로 함으로써 같은 장소의 게시물들을 모아볼 수 있습니다.
-사용자는 연인과의 데이트 장소 후기를 작성할 수 있고, 이를 통해 지역별/해시태그 별로 데이트 장소를 공유할 수 있습니다.
+:two: 여러가지 장르를 손쉽게 다운 받을 수 있게 
+
+
+웹플릭스는 다양한 장르(액션, 멜로, 공포, 에니메이션)등 영화 정보(줄거리, 예고편, 출연진)을 볼 수 
+있고 다운로드버튼을 클릭하여 해당영화를 다운을 받을 수 있습니다.
 
 ## :gear: Function
 
+**보안(Security)**
+- Spring Web Security를 이용한 로그인, 자동로그인(세션유지), 접근제한설정, csrf 공격방지
+
 **계정**
 
-- 계정 관한은 관리자, 사용자가 있습니다.
-- 계정은 ID/PASSWORD 와 OAuth 방식을 사용합니다.
+- 계정 관한은 "ROLE_ADMIN"(관리자), "ROLE_MEMBER"(회원) 이 있습니다.
+- 회원가입시 스프링 시큐리티에서 제공하는 PasswordEncoder(sha256 + salt) 를 이용하여 비밀번호를 암호화를 하였습니다.
 
-**카테고리**
+**ID / PW 찾기**
+-  아이디를 찾고 싶을 땐 가입했던 이메일을 입력하여 아이디를 찾을 수 있습니다.
+-  비밀번호 찾기시 복호화가 불가능 하므로 가입된 이메일과 아이디를 입력하면 새로운 비밀번호를 네이버 smtp를 이용하여 새로운 비밀번호를 발송합니다.
 
-- 관리자만이 지역, 태그 목록을 관리할 수 있습니다.
+**영화상세페이지**
 
-**게시물**
+- 해당영화를 구매할 수 있고, 다운로드 버튼을 누르면 해당영화가 다운로드가 됩니다.
 
-- 모든 사용자는 게시물을 읽을 수 있고, 로그인 한 사용자는 게시물 업로드 및 댓글을 작성할 수 있습니다.
+**마이페이지**
+
+- 로그인된 한 사용자는 자신이 구매한 영화 목록을 볼 수 있습니다.
+
+**회원정보**
+
+- 관리자권한("ROLE_ADMIN")을 가진사람이 웹플릭스 홈페이지에 가입된 회원정보(이름, 생년월일, 가입날짜, 핸드폰번호 등)를 볼 수 있습니다.
+
+**게시판**
+
+- 모든 사용자는 게시물을 읽을 수 있고, 로그인 한 사용자는 게시물 작성하고 자신의 게시물에 대해 수정 삭제 할 수 있습니다.
 
 **댓글**
-
-- 댓글은 1depth 만 허용합니다.
-- 로그인 한 사용자는 댓글을 작성할 수 있습니다.
-
-## :page_with_curl: Page URL
-
-**계정**
-
-- Local 로그인 : `GET /auth`
-- Google 로그인 : `GET /auth/google-login`
-- 회원가입 : `GET /users`
-
-**관리자**
-
-- 관리자 메인 : `GET /admin`
-- 지역 목록: `GET /admin/region`
-- 태그 목록 : `GET /admin/tag`
-
-**메인**
-
-- 메인 : `GET /`
-
-**게시물**
-
-- 게시물 작성 : `GET /post`
-- 게시물 상세 : `GET /post/:post_id`
-- 게시물 수정 : `GET /post/edit/:post_id`
-- 게시물 목록 : `GET /post/list`
-
-## :page_facing_up: API
-
-**계정**
-
-- 로그인 : `POST /auth`
-- 로그아웃 : `POST /auth/logout`
-- 회원가입 : `POST /users`
-
-**관리자**
-
-- 지역 등록 : `POST /admin/region`
-- 지역 삭제 : `DELETE /admin/region`
-- 태그 등록 : `POST /admin/tag`
-- 태그 삭제 : `DELETE /admin/tag`
-
-**메인**
-
-- 지역/태그 검색 : `GET /search`
-
-**게시물**
-
-- 게시물 등록 : `POST /post`
-- 게시물 수정 : `PATCH /post/:post_id`
-- 게시물 삭제 : `DELETE /post/:post_id`
-
-- 댓글 등록 : `POST /comment/:post_id`
-- 댓글 삭제 : `DELETE /comment/:comment_id`
-
-- 좋아요 등록 : `POST /post/like/:post_id`
-- 좋아요 삭제 : `DELETE /post/like/:post_id`
-
-## :desktop_computer: DataBase Structure
+- 댓글은 REST 방식으로 Ajax를 이용하여 처리하였습니다.
+- 모든 사용자는 게시물에 쓰여진 댓글을 읽을 수 있고, 로그인 한 사용자는 댓글 작성하고 자신의 댓글에 대해 수정 삭제 할 수 있습니다.
 
 **ERD**
 
 ![ERD](./docs/images/ERD.PNG)
 
-**USER Table**
-
-| 고유값(PK) | 아이디  |   비밀번호    |   이름    |   권한    |   가입경로    |   작성일    |   수정일    | 상태코드    |
-| :--------: | :-----: | :-----------: | :-------: | :-------: | :-----------: | :---------: | :---------: | ----------- |
-|     ID     | USER_ID | USER_PASSWORD | USER_NAME | USER_AUTH | AUTH_PROVIDER | CREATE_DATE | UPDATE_DATE | STATUS_CODE |
-
-**POST Table**
-
-| 고유값(PK) | 제목(장소) | 지역(FK)  |    상세주소    |  첨부파일  |     내용      |    별점     | 작성자(FK) |   작성일    |  수정자   |   수정일    |  상태코드   |
-| :--------: | :--------: | :-------: | :------------: | :--------: | :-----------: | :---------: | :--------: | :---------: | :-------: | :---------: | :---------: |
-|     ID     | PLACE_NAME | REGION_ID | DETAIL_ADDRESS | PHOTO_LINK | POST_CONTENTS | STAR_RATING | CREATE_ID  | CREATE_DATE | UPDATE_ID | UPDATE_DATE | STATUS_CODE |
-
-**LIKE Table**
-
-| 고유값(PK) | 게시물(FK) | 작성자(FK) |   작성일    |  수정자   |   수정일    |  상태코드   |
-| :--------: | :--------: | :--------: | :---------: | :-------: | :---------: | :---------: |
-|     ID     |  POST_ID   | CREATE_ID  | CREATE_DATE | UPDATE_ID | UPDATE_DATE | STATUS_CODE |
-
-**COMMENT Table**
-
-| 고유값(PK) | 게시물(FK) |     내용     | 작성자(FK) |   작성일    |  수정자   |   수정일    |  상태코드   |
-| :--------: | :--------: | :----------: | :--------: | :---------: | :-------: | :---------: | :---------: |
-|     ID     |  POST_ID   | COMMENT_BODY | CREATE_ID  | CREATE_DATE | UPDATE_ID | UPDATE_DATE | STATUS_CODE |
-
-**REGION Table**
-
-| 고유값(PK) |   지역명    | 작성자(FK) |   작성일    |  수정자   |   수정일    |  상태코드   |
-| :--------: | :---------: | :--------: | :---------: | :-------: | :---------: | :---------: |
-|     ID     | REGION_NAME | CREATE_ID  | CREATE_DATE | UPDATE_ID | UPDATE_DATE | STATUS_CODE |
-
-**TAG Table**
-
-| 고유값(PK) |  태그명  | 작성자(FK) |   작성일    |  수정자   |   수정일    |  상태코드   |
-| :--------: | :------: | :--------: | :---------: | :-------: | :---------: | :---------: |
-|     ID     | TAG_NAME | CREATE_ID  | CREATE_DATE | UPDATE_ID | UPDATE_DATE | STATUS_CODE |
-
-**TAGGED Table**
-
-| 고유값(PK) | 게시물(FK) | 태그(FK) |  작성자   |   작성일    |  수정자   |   수정일    | 상태코드    |
-| :--------: | :--------: | :------: | :-------: | :---------: | :-------: | :---------: | ----------- |
-|     ID     |  POST_ID   |  TAG_ID  | CREATE_ID | CREATE_DATE | UPDATE_ID | UPDATE_DATE | STATUS_CODE |
