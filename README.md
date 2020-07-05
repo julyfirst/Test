@@ -1,6 +1,6 @@
-# :eyes: 여기어땠!
+# WebFlix!
 
-> [데모링크](https://how-about-here.herokuapp.com)
+> .SpringFramework MVC
 
 > [master branch](https://github.com/mukeunzi/How-About-Here) - Node.js 의 Express 프레임워크, pug, MySQL/sequelize 를 이용해 구현하는 여기어땠!
 
