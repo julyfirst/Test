@@ -1,19 +1,15 @@
 # WebFlix!
 
-> .SpringFramework MVC
+> SpringFramework MVC 기반 프로젝트
 
-> [master branch](https://github.com/mukeunzi/How-About-Here) - Node.js 의 Express 프레임워크, pug, MySQL/sequelize 를 이용해 구현하는 여기어땠!
-
-> [mongodb branch](https://github.com/mukeunzi/How-About-Here/tree/mongodb) - Node.js 의 Express 프레임워크, pug, MongoDB/mongoose 를 이용해 구현하는 여기어땠!
-
-> MongoDB에서 MySQL로 migration 진행 중.
+> [master branch](https://github.com/mukeunzi/How-About-Here) - spring 프레임워크, java, ajax, jsp, bootstarp, Oracle/Mybatis 를 이용해 구현한 WebFlix(영화구매사이트)!
 
 ## :memo: Description
 
-여기어땠은 **데이트 장소에 대한 후기를 공유할 수 있는 서비스**입니다.
+Web_Flix는 **영화를 구매 다운로드 할 수 있는 사이트**입니다.
 
-:one: 연인과의 데이트 장소를 고민하는 사람들  
-:two: 반복되는 데이트 코스에 변화를 필요로하는 사람들
+:one: 코로나19로 인해 집에있는 사람들을 위한 
+:two: 여러가지 영화를 다운 받을 수 있게 만들었습니다.
 
 을 위해 만들어졌으며, 만족했던 데이트 장소를 공유함으로서 데이트 장소에 대한 후기와 다양한 정보를 얻을 수 있는 서비스입니다.
 과도한 해시태그 남발을 방지하기 위해 관리자만이 해시태그를 등록할 수 있도록 했고, 지도 API를 이용하여 장소를 게시물의 제목으로 함으로써 같은 장소의 게시물들을 모아볼 수 있습니다.
