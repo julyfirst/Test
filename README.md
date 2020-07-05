@@ -50,6 +50,7 @@ Web_Flix는 **웹(Web)과 영화(flicks)를 합성어로 웹 페이지에서 영
 - 댓글은 REST 방식으로 Ajax를 이용하여 처리하였습니다.
 - 모든 사용자는 게시물에 쓰여진 댓글을 읽을 수 있고, 로그인 한 사용자는 댓글 작성하고 자신의 댓글에 대해 수정 삭제 할 수 있습니다.
 
+## :desktop_computer: DataBase(Oracle) 
 **ERD**
 
 ![ERD](./docs/images/ERD.PNG)
